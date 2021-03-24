@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020/8 | Hexo</title>
+  <title>node.js模块化操作 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2020/08/index.html">
+  <meta name="description" content="模块化操作 node 中没有全局作用域，只有模块作用域 外部不能访问内部，内部也访问不到外部 每个文件模块都提供了一个对象：exports exports 默认是一个空对象所有要被外部访问的成员都要挂载到这个对象中a.js console.log(‘开始执行a……’)var foo&#x3D;’aaa’require(‘.&#x2F;b.js’)&#x2F;可省略后缀&#x2F;console.log(‘foo值是’+foo)conso">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node.js模块化操作">
+<meta property="og:url" content="http://yoursite.com/2020/10/25/node.js/node.js%E6%A8%A1%E5%9D%97%E5%8C%96%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="模块化操作 node 中没有全局作用域，只有模块作用域 外部不能访问内部，内部也访问不到外部 每个文件模块都提供了一个对象：exports exports 默认是一个空对象所有要被外部访问的成员都要挂载到这个对象中a.js console.log(‘开始执行a……’)var foo&#x3D;’aaa’require(‘.&#x2F;b.js’)&#x2F;可省略后缀&#x2F;console.log(‘foo值是’+foo)conso">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-10-25T06:35:08.000Z">
+<meta property="article:modified_time" content="2020-10-25T06:46:12.726Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -150,178 +154,181 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-node.js/node.js模块化操作" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      node.js模块化操作
+    </h1>
+  
+
+        
+        <a href="/2020/10/25/node.js/node.js%E6%A8%A1%E5%9D%97%E5%8C%96%E6%93%8D%E4%BD%9C/" class="archive-article-date">
+  	<time datetime="2020-10-25T06:35:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-25</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="模块化操作"><a href="#模块化操作" class="headerlink" title="模块化操作"></a>模块化操作</h2><ul>
+<li>node 中没有全局作用域，只有模块作用域</li>
+<li>外部不能访问内部，内部也访问不到外部</li>
+<li>每个文件模块都提供了一个对象：exports</li>
+<li>exports 默认是一个空对象<br><strong>所有要被外部访问的成员都要挂载到这个对象中</strong><br><strong>a.js</strong><blockquote>
+<p>console.log(‘开始执行a……’)<br>var foo=’aaa’<br>require(‘./b.js’)/<em>可省略后缀</em>/<br>console.log(‘foo值是’+foo)<br>console.log(‘执行a结束……’)<br>var bexports=require(‘./b’)/<em>加载b模块拿到对象</em>/<br>console.log(bexports.foo)/<em>通过exports对象访问外来成员</em>/<br>console.log(bexports.add(1,8))</p>
+</blockquote>
+</li>
+</ul>
+<p>//之前加载的一些核心模块：http   os   fs,是导出了一些成员</p>
+<p><strong>b.js</strong></p>
+<blockquote>
+<p>console.log(‘我是b,被执行了’)<br>var foo=’bbb’<br>exports.foo=’hello’<br>/<em>往exports对象添加了一个成员值为hello;    将要被访问的成员挂载到对象</em>/</p>
+</blockquote>
+<blockquote>
+<p>exports.add=function(x,y){<br>return x+y;<br>}/<em>这里将函数挂载到exports对象中，a.js中require(‘./b’)加载本文件路径后就可通过exports.add()访问外来函数</em>/</p>
+</blockquote>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/08/24/Embedded%20knowledge/%E4%B8%8A%E6%8B%89%E7%94%B5%E9%98%BB/" class="archive-article-date">
-  	<time datetime="2020-08-24T08:44:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/08/24/Embedded%20knowledge/%E4%B8%8A%E6%8B%89%E7%94%B5%E9%98%BB/">上拉电阻</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/10/25/node.js/node.js%E6%A8%A1%E5%9D%97%E5%8C%96%E6%93%8D%E4%BD%9C/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/08/23/Embedded%20knowledge/Interrupt/" class="archive-article-date">
-  	<time datetime="2020-08-23T06:39:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-23</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2020/10/25/node.js/http%E6%A8%A1%E5%9D%97/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          http模块化操作
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/10/24/node.js/node.js%E4%BB%8B%E7%BB%8D/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">node.js介绍</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/08/23/Embedded%20knowledge/Interrupt/">StackPointer</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/08/21/Embedded%20knowledge/%E5%B5%8C%E5%85%A5%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2020-08-21T09:02:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/08/21/Embedded%20knowledge/%E5%B5%8C%E5%85%A5%E5%BC%8F/">嵌入式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/08/20/python/SyntaxError-EOL-while-scanning-string-literal/" class="archive-article-date">
-  	<time datetime="2020-08-20T09:20:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/08/20/python/SyntaxError-EOL-while-scanning-string-literal/">SyntaxError:EOL while scanning string literal</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/08/17/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" class="archive-article-date">
-  	<time datetime="2020-08-17T09:47:43.708Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-17</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/08/17/hello-world/" class="archive-article-date">
-  	<time datetime="2020-08-17T09:36:05.688Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/08/17/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -344,8 +351,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

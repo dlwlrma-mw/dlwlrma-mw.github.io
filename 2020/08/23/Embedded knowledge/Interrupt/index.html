@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020/8 | Hexo</title>
+  <title>StackPointer | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2020/08/index.html">
+  <meta name="description" content="Stack pointer and program counterpc指针总是指向上一条执行完了的指令  sp总是指向当前已经使用到的内存地址，它的下一个地址是我们压栈时可以使用的空白的内存空间 中断 vs 轮询 轮询：  -周期&#x2F;连续的检查外部事件是否发生  -消耗大量CPU的处理时间  -轮询过程需要和其他功能代码结合  -由于CPU需要处理其他事件(可能是无关紧要的)，可能丢失关键事件  中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="StackPointer">
+<meta property="og:url" content="http://yoursite.com/2020/08/23/Embedded%20knowledge/Interrupt/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Stack pointer and program counterpc指针总是指向上一条执行完了的指令  sp总是指向当前已经使用到的内存地址，它的下一个地址是我们压栈时可以使用的空白的内存空间 中断 vs 轮询 轮询：  -周期&#x2F;连续的检查外部事件是否发生  -消耗大量CPU的处理时间  -轮询过程需要和其他功能代码结合  -由于CPU需要处理其他事件(可能是无关紧要的)，可能丢失关键事件  中">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-23T06:39:11.000Z">
+<meta property="article:modified_time" content="2020-09-29T10:04:23.759Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -150,178 +154,191 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Embedded knowledge/Interrupt" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/08/24/Embedded%20knowledge/%E4%B8%8A%E6%8B%89%E7%94%B5%E9%98%BB/" class="archive-article-date">
-  	<time datetime="2020-08-24T08:44:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-24</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/08/24/Embedded%20knowledge/%E4%B8%8A%E6%8B%89%E7%94%B5%E9%98%BB/">上拉电阻</a>
+    <h1 class="article-title" itemprop="name">
+      StackPointer
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/08/23/Embedded%20knowledge/Interrupt/" class="archive-article-date">
+        
+        <a href="/2020/08/23/Embedded%20knowledge/Interrupt/" class="archive-article-date">
   	<time datetime="2020-08-23T06:39:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-23</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/08/23/Embedded%20knowledge/Interrupt/">StackPointer</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Stack-pointer-and-program-counter"><a href="#Stack-pointer-and-program-counter" class="headerlink" title="Stack pointer and program counter"></a>Stack pointer and program counter</h2><p>pc指针总是指向上一条执行完了的指令  sp总是指向当前已经使用到的内存地址，它的下一个地址是我们压栈时可以使用的空白的内存空间</p>
+<h2 id="中断-vs-轮询"><a href="#中断-vs-轮询" class="headerlink" title="中断 vs 轮询"></a>中断 vs 轮询</h2><ul>
+<li><p>轮询：<br>  -周期/连续的检查外部事件是否发生<br>  -消耗大量CPU的处理时间<br>  -轮询过程需要和其他功能代码结合<br>  -由于CPU需要处理其他事件(可能是无关紧要的)，可能丢失关键事件</p>
+</li>
+<li><p>中断：<br>  -由硬件来判断是否发生外部事件并通知CPU<br>  -专用的中断服务程序来处理事件</p>
+</li>
+</ul>
+<h2 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h2><h3 id="中断机制"><a href="#中断机制" class="headerlink" title="中断机制"></a>中断机制</h3><ul>
+<li>中断是一个需要CPU立刻处理的内部/外部事件，是硬件和电路以信号的方式通知CPU的</li>
+<li>内部/外部事件请求CPU处理</li>
+<li>CPU停止正常流程，执行中断服务程序ISR</li>
+<li>ISR结束后，CPU返回正常流程</li>
+</ul>
+<p>在某种情况下，设定好的外部条件满足，以电路方式通知CPU发生中断，完成某种响应（迅速，快速响应）<br>将程序运行的现场保存下来，用以还原，保证程序继续运行下去，计算机里称为:<strong>保存返回地址和寄存器上下文(Register context)</strong></p>
+<p>一旦有个信号通知CPU中断发生，CPU就会自动将一些寄存器压入堆栈保存。然后执行中断函数，中断执行完毕后CPU会把这些寄存器倒叙弹出来还原CPU现场，使主程序继续执行。如果中断函数用到这些寄存器之外的寄存器，就需要编程者自己手动将使用到的寄存器压入堆栈。</p>
+<p><strong>中断寄存器入栈由CPU硬件自动完成，对于具体的CPU，在中断时哪些寄存器被推入堆栈/寄存器在堆栈的保存顺序是在其手册中指明的。</strong><br><strong>It is the programmer’s responsibility to find out from the datasheet</strong></p>
+<p><strong>中断服务子程ISR：</strong></p>
+<ul>
+<li>是被CPU硬件自动调用的，而不是由其他程序在代码中调用</li>
+<li>在ISR执行前、后，CPU自动进行了堆栈出入操作</li>
+<li>写成C函数的参数和返回值都应为void(不被调用，也不用返回值)</li>
+</ul>
+<h2 id="内部总线接口"><a href="#内部总线接口" class="headerlink" title="内部总线接口"></a>内部总线接口</h2><ul>
+<li>CPU通过内部总线接口访问存储器/外设</li>
+<li>MCU的外部总线接口时内部总线接口的子集</li>
+<li>内部总线接口包括三部分：<br>— 数据线<br>— 地址线<br>— 控制线</li>
+</ul>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/08/23/Embedded%20knowledge/Interrupt/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/08/21/Embedded%20knowledge/%E5%B5%8C%E5%85%A5%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2020-08-21T09:02:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-21</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2020/08/24/Embedded%20knowledge/%E4%B8%8A%E6%8B%89%E7%94%B5%E9%98%BB/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          上拉电阻
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/08/21/Embedded%20knowledge/%E5%B5%8C%E5%85%A5%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">嵌入式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/08/21/Embedded%20knowledge/%E5%B5%8C%E5%85%A5%E5%BC%8F/">嵌入式</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/08/20/python/SyntaxError-EOL-while-scanning-string-literal/" class="archive-article-date">
-  	<time datetime="2020-08-20T09:20:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/08/20/python/SyntaxError-EOL-while-scanning-string-literal/">SyntaxError:EOL while scanning string literal</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/08/17/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" class="archive-article-date">
-  	<time datetime="2020-08-17T09:47:43.708Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-17</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/08/17/hello-world/" class="archive-article-date">
-  	<time datetime="2020-08-17T09:36:05.688Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/08/17/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -344,8 +361,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
